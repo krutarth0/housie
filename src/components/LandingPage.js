@@ -36,9 +36,7 @@ class LandingPage extends React.Component{
           this.setState({event: childData})
 
     }
-    componentDidMount() {
-      localStorage.setItem("event", "");
-    }
+
   render(){
     console.log(this.callbackFunction);
     if (localStorage.getItem("event") === 'host') { return (<HostPage parentCallback={this.callbackFunction} />)}
