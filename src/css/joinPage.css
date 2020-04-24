@@ -1,8 +1,16 @@
+
 .Hicon{
   padding-top: 50px;
   padding-left: 20px;
 }
 
-.home{
-  font-size: 50px;
+
+.Jnamer{
+  justify-content: center;
+  padding: 70px;
+}
+
+.buttonJ{
+  text-align: center;
+  font-size: 90px;
 }

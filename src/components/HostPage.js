@@ -23,18 +23,19 @@ class HostPage extends React.Component{
       </div>
       <div className='row namer'>
       <Form>
-<Form.Group controlId="formBasicEmail">
+        <Form.Group controlId="formBasicEmail">
+          <Form.Control type="text" placeholder="Enter Your name" />
+          <Form.Text className="text-muted">
+          your identity in game,You must have one
+          </Form.Text>
+        </Form.Group>
 
-  <Form.Control type="text" placeholder="Enter Your name" />
-  <Form.Text className="text-muted">
-    Your name will be use as player name in game.
-  </Form.Text>
-</Form.Group>
-
-<div className='buttonH'><Button variant="dark" type="submit">
-  Host
-</Button></div>
-</Form>
+        <div className='buttonH'>
+          <Button variant="dark" type="submit">
+            Host
+          </Button>
+        </div>
+      </Form>
       </div>
 
       </div>
