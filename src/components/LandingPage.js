@@ -49,7 +49,7 @@ class LandingPage extends React.Component{
          <div className="row logo"> <img src={logo} className="App-logo" alt="logo" /></div>
           <div className="row nav">
            <div className="col host-col">
-             <Button size="lg" variant="outline-dark" onClick={this.handleClickHost}>Host
+             <Button size="lg" variant="outline-dark" onClick={this.handleClickHost}>Hostttt
              </Button>
            </div>
           <div className="col join">
