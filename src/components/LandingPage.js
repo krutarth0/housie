@@ -37,10 +37,10 @@ class LandingPage extends React.Component{
 
     }
 
+
   render(){
-    console.log(this.callbackFunction);
-    if (localStorage.getItem("event") === 'host') { return (<HostPage parentCallback={this.callbackFunction} />)}
-    else if(localStorage.getItem("event")=== 'join') { return(<JoinPage parentCallback ={this.callbackFunction}/>)}
+    if (localStorage.getItem("event") === 'host') { return (<HostPage parentCallback={this.props.parentCallback} />)}
+    else if(localStorage.getItem("event")=== 'join') { return(<JoinPage parentCallback ={this.props.parentCallback}/>)}
     else {
       return(
          <React.Fragment>

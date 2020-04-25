@@ -14,3 +14,8 @@
   text-align: center;
   font-size: 90px;
 }
+
+
+.error-message{
+  color: red;
+}
