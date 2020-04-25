@@ -18,17 +18,25 @@ class HostPage extends React.Component{
     this.setState({ [event.target.id] : event.target.value })
   }
 
-  sendData = () => {
+  sendData = (data) => {
     this.props.parentCallback('hosted');
 }
 
 
   handleSubmit = (event) => {
-    event.preventDefault();
-      axios.post(`https://housie-kalpit.herokuapp.com/host/${this.state.player_name}`)
-      .then(res => console.log(res)
-      )
+    event.preventDefault()
+      var res_data = axios.post(`https://housie-kalpit.herokuapp.com/host/${this.state.player_name}`)
+      .then(res =>{
+        
+        this.sendData(res.data)
+        localStorage.setItem("host-response",JSON.stringify(res.data))
+        return res.data
+      })
+       
+
       localStorage.setItem("event", "hosted")
+      
+
       this.sendData()
 
     }
@@ -39,7 +47,8 @@ class HostPage extends React.Component{
 
     }
 
-  render(){
+  render(){    
+    
     return (
       <div className='container'>
       <div className='row Hicon'>
@@ -62,7 +71,6 @@ class HostPage extends React.Component{
         </div>
       </Form>
       </div>
-
       </div>
       );
   }

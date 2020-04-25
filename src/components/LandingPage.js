@@ -12,6 +12,7 @@ class LandingPage extends React.Component{
     this.state = {
       event: ''
     }
+    localStorage.clear()
     this.handleClickHost = this.handleClickHost.bind(this)
     this.handleClickJoin = this.handleClickJoin.bind(this)
     this.sendData = this.sendData.bind(this)
@@ -32,9 +33,7 @@ class LandingPage extends React.Component{
     }
 
     callbackFunction = (childData) => {
-      console.log(childData);
           this.setState({event: childData})
-
     }
 
 

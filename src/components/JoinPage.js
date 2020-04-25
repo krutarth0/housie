@@ -43,8 +43,10 @@ class JoinPage extends React.Component{
        else{
         event.preventDefault();
         axios.post(`https://housie-kalpit.herokuapp.com/join/${this.state.player_name}/${this.state.room_id}`)
-        .then(res => console.log(res)
-        )
+        .then(res => {
+          console.log(res)
+          localStorage.setItem("host-response",JSON.stringify(res.data))
+        })
         localStorage.setItem("event", "joined");
         this.sendData()
        }      
