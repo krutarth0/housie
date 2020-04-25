@@ -12,7 +12,8 @@ class JoinPage extends React.Component{
       this.state ={
         player_name:"Annonymous Player",
         room_id:" ",
-        idError:""
+        idError:"",
+        idLengthError:""
       }
     }
 
@@ -28,8 +29,16 @@ class JoinPage extends React.Component{
        if(this.state.room_id == " "){
         event.preventDefault();
             this.setState({
-              idError: 'id is required !dumbass where do we put you in? trash?'
+              idError: 'id is required !dumbass where do we put you in? trash?',
+              idLengthError:''
             })
+       }
+       else if (this.state.room_id.length < 36){
+        event.preventDefault();
+        this.setState({
+          idError: '',
+          idLengthError:'id is too short'
+        })
        }
        else{
         event.preventDefault();
@@ -43,12 +52,19 @@ class JoinPage extends React.Component{
   
     }
 
+    handleHome = () =>{
+      localStorage.setItem("event", "")
+      this.props.parentCallback('');
+
+    }
+
   render(){
+    
     
     return (
       <div className='container'>
       <div className='row Hicon'>
-        <a href='/' onClick = {()=>localStorage.setItem("event", "")}><i className="fas fa-heading home"></i></a>
+        <a href='/' onClick = {this.handleHome}><i className="fas fa-heading home"></i></a>
 
       </div>
       <div className='row Jnamer'>
@@ -63,8 +79,14 @@ class JoinPage extends React.Component{
         <Form.Group controlId="room_id">
           <Form.Control type="text" placeholder="Room ID" onChange={this.handleChange}/>
           <Form.Text className="text-muted">
-            {this.state.idError == '' ? 'Room ID is provided by host':<span className="error-message"> {this.state.idError} </span>  }
+            {
+            this.state.idError == '' ? 
+              this.state.idLengthError == '' ? 'Room ID is provided by host' 
+                :<span className="error-message"> {this.state.idLengthError} </span>           
+              :<span className="error-message"> {this.state.idError} </span>
+            }
           </Form.Text>
+          
         </Form.Group>
 
         <div className='buttonJ'>

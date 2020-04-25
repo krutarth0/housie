@@ -33,12 +33,17 @@ class HostPage extends React.Component{
 
     }
 
+    handleHome = () =>{
+      localStorage.setItem("event", "")
+      this.props.parentCallback('');
+
+    }
 
   render(){
     return (
       <div className='container'>
       <div className='row Hicon'>
-        <a href='/' onClick = {()=>localStorage.setItem("event", "")}><i className="fas fa-heading home"></i></a>
+        <a href='/' onClick = {this.handleHome}><i className="fas fa-heading home"></i></a>
 
       </div>
       <div className='row namer'>
