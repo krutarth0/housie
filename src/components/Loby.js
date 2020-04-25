@@ -16,32 +16,25 @@ export default class Loby extends Component {
             message:'',
             host_data: JSON.parse(localStorage.getItem('host-response'))
         }
-        if (this.state.host_data !== null){
-            axios.get(`https://housie-kalpit.herokuapp.com/getGame/${this.state.host_data.id}`)
-            .then(res=> {
-                console.log(res)
-                localStorage.setItem("host-response",JSON.stringify(res.data))
-            })  
-           }
-        
+    
     }
     sendData = () => {
         this.props.parentCallback(this.state.event);
    }
-   componentDidUpdate(){
-    window.location.reload();
-  
-   }
 
    componentDidMount(){
-    setTimeout(function(){ window.location.reload() },4000);
-   }
+    axios.get(`https://housie-kalpit.herokuapp.com/getGame/${this.props.room_ID}`)
+    .then(res=> {
+        console.log(res)
+        this.setState({host_data:res.data})
+        localStorage.setItem("host-response",JSON.stringify(res.data))
+    })  
 
-   data_call = () =>{
-       
    }
 
     render() {
+        console.log(this.props);
+        
         
         return (
             <div className='container'>

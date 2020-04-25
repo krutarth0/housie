@@ -9,7 +9,8 @@ class HostPage extends React.Component{
       super()
       this.state ={
         message: '',
-        player_name:'Anonymous player'
+        player_name:'Anonymous player',
+        data:''
         }
 
       
@@ -19,26 +20,19 @@ class HostPage extends React.Component{
   }
 
   sendData = (data) => {
-    this.props.parentCallback('hosted');
+    this.props.parentCallback(data);
 }
-
 
   handleSubmit = (event) => {
     event.preventDefault()
       var res_data = axios.post(`https://housie-kalpit.herokuapp.com/host/${this.state.player_name}`)
       .then(res =>{
         
-        this.sendData(res.data)
+        this.sendData(['hosted',res.data.id])
         localStorage.setItem("host-response",JSON.stringify(res.data))
-        return res.data
+        this.setState({data:res.data})
       })
-       
-
       localStorage.setItem("event", "hosted")
-      
-
-      this.sendData()
-
     }
 
     handleHome = () =>{

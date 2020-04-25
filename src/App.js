@@ -16,11 +16,11 @@ class App extends React.Component{
 
 
 callbackFunction = (childData) => {
-      this.setState({event: childData[0]})
+      this.setState({event: childData[0],room_ID:childData[1]})
 }
   render(){
       if (this.state.event =='hosted' || localStorage.getItem("event") === 'hosted'){
-        return (<Loby parentCallback ={this.callbackFunction} event = 'hosted'/>)
+        return (<Loby parentCallback ={this.callbackFunction} event = 'hosted' room_ID = {this.state.room_ID}/>)
       }
       else if(this.state.event =='joined' || localStorage.getItem("event") === 'joined'){
         return (<Loby parentCallback ={this.callbackFunction} event = 'joined'/>)
