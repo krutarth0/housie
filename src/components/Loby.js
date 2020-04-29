@@ -149,24 +149,27 @@ export default class Loby extends Component {
                             <div> <h4>Room ID :</h4>
                             <h5>{data!==null? <p>{data.id}</p>: <Spinner animation="grow" variant="primary"> </Spinner>}</h5>
                             {document.queryCommandSupported('copy') && 
-                            <div className='copy' onClick= {this.copy(data.id)}><FileCopyIconOutlined /> </div>}
-                            {alert}
+                            <div className='copy' onClick= {()=>this.copy(data.id)}><FileCopyIconOutlined /> </div>}
+                            <p className='alert'>{alert}</p>
                              </div>
                             
                     </div>
     
                     <div className='joinded-players'>
                         
-                            <p className='player-legend'>Players in the loby:</p>
+                            <p className='player-legend'>Players in the loby : {data.players.length}</p>
                             {data!==null || data!==undefined? data.players.map( 
-                                items=>
+                                items=><span className='chips'>
                                         <Chip 
+                                        
                                         key={items}
                                         avatar={<Avatar>{items.charAt(0)}</Avatar>}
                                         label={items}
                                         clickable
                                         variant="outlined"
                                         />
+                                        </span>
+                                        
                                 )         
                                 : <Spinner animation="border" variant="primary"> </Spinner>}
                     
