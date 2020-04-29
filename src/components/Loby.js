@@ -6,6 +6,7 @@ import '../css/loby.css'
 import Chip from "@material-ui/core/Chip";
 import Avatar from "@material-ui/core/Avatar";
 import Button from '@material-ui/core/Button';
+import FileCopyIconOutlined from '@material-ui/icons/FileCopy';
 
 
 export default class Loby extends Component {
@@ -47,6 +48,16 @@ export default class Loby extends Component {
    }
 
 
+   copy = (text)=> {
+    var textarea = document.createElement("textarea");
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textarea);
+  }
+  
+
    handleHome = () =>{
     localStorage.clear()
     localStorage.setItem("event", "")
@@ -74,16 +85,16 @@ export default class Loby extends Component {
                         <a href='/' onClick = {this.handleHome}><i className="fas fa-heading home"></i></a>
                     </div>
                     <div className='title'>
-                            <div> <h4>Room ID :</h4>
-    
-                            <h5>{data!==null? <p>{data.id}</p> 
-                                    : <Spinner animation="grow" variant="primary"> </Spinner>}</h5>
+                        <div> <h4>Room ID :</h4>
+                        <h5>{data!==null? <p id = 'Room-id'>{data.id}</p>: <Spinner animation="grow" variant="primary"> </Spinner>}</h5>
+                        {document.queryCommandSupported('copy') && 
+                            <div className='copy' onClick= {this.copy(data.id)}><FileCopyIconOutlined /> </div>}
                              </div>
                             
                     </div>
     
                     <div className='joinded-players'>
-                        <h3>Players in the loby:</h3>
+                    <p className='player-legend'>Players in the loby:</p>
                     {data!==null || data!==undefined? data.players.map( 
                         items=>
                                 <Chip
@@ -118,27 +129,28 @@ export default class Loby extends Component {
                     </div>
                     <div className='title'>
                             <div> <h4>Room ID :</h4>
-    
-                            <h5>{data!==null? <p>{data.id}</p> 
-                                    : <Spinner animation="grow" variant="primary"> </Spinner>}</h5>
+                            <h5>{data!==null? <p>{data.id}</p>: <Spinner animation="grow" variant="primary"> </Spinner>}</h5>
+                            {document.queryCommandSupported('copy') && 
+                            <div className='copy' onClick= {this.copy(data.id)}><FileCopyIconOutlined /> </div>}
                              </div>
                             
                     </div>
     
                     <div className='joinded-players'>
-                        <h3>Players in the loby:</h3>
-                    {data!==null || data!==undefined? data.players.map( 
-                        items=>
-                                <Chip
-                                key={items}
-                                avatar={<Avatar>{items.charAt(0)}</Avatar>}
-                                label={items}
-                                clickable
-                                variant="outlined"
-                                />
-                        )         
-                        : <Spinner animation="border" variant="primary"> </Spinner>}
-    
+                        
+                            <p className='player-legend'>Players in the loby:</p>
+                            {data!==null || data!==undefined? data.players.map( 
+                                items=>
+                                        <Chip 
+                                        key={items}
+                                        avatar={<Avatar>{items.charAt(0)}</Avatar>}
+                                        label={items}
+                                        clickable
+                                        variant="outlined"
+                                        />
+                                )         
+                                : <Spinner animation="border" variant="primary"> </Spinner>}
+                    
                     </div>
     
                     <div className='host'>
