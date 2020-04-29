@@ -12,34 +12,26 @@ class LandingPage extends React.Component{
     this.state = {
       event: ''
     }
-    localStorage.clear()
+
     this.handleClickHost = this.handleClickHost.bind(this)
     this.handleClickJoin = this.handleClickJoin.bind(this)
-    this.sendData = this.sendData.bind(this)
+
   }
 
   handleClickHost (){
     this.setState({event:'host'})
-    localStorage.setItem("event", "host");
+    localStorage.setItem("landing-event", "host");
   }
 
   handleClickJoin (){
     this.setState({event:'join'})
-    localStorage.setItem("event", "join");
+    localStorage.setItem("landing-event", "join");
   }
-
-  sendData = () => {
-         this.props.parentCallback(this.state.event);
-    }
-
-    callbackFunction = (childData) => {
-          this.setState({event: childData})
-    }
 
 
   render(){
-    if (localStorage.getItem("event") === 'host') { return (<HostPage parentCallback={this.props.parentCallback} />)}
-    else if(localStorage.getItem("event")=== 'join') { return(<JoinPage parentCallback ={this.props.parentCallback}/>)}
+    if (localStorage.getItem("landing-event") === 'host') { return (<HostPage parentCallback={this.props.parentCallback} />)}
+    else if(localStorage.getItem("landing-event")=== 'join') { return(<JoinPage parentCallback ={this.props.parentCallback}/>)}
     else {
       return(
          <React.Fragment>

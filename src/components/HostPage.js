@@ -4,11 +4,13 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form'
 import axios from 'axios';
 
+import Loby from './Loby'
+
 class HostPage extends React.Component{
-  constructor(){
-      super()
+  constructor(props){
+      super(props)
       this.state ={
-        message: '',
+        host_event: '',
         player_name:'Anonymous player',
         data:''
         }
@@ -19,30 +21,27 @@ class HostPage extends React.Component{
     this.setState({ [event.target.id] : event.target.value })
   }
 
-  sendData = (data) => {
-    this.props.parentCallback(data);
-}
 
   handleSubmit = (event) => {
     event.preventDefault()
-      var res_data = axios.post(`https://housie-kalpit.herokuapp.com/host/${this.state.player_name}`)
+      axios.post(`https://housie-kalpit.herokuapp.com/host/${this.state.player_name}`)
       .then(res =>{
-        
-        this.sendData(['hosted',res.data.id])
         localStorage.setItem("host-response",JSON.stringify(res.data))
-        this.setState({data:res.data})
+        localStorage.setItem("room_ID",JSON.stringify(res.data.id))
+        localStorage.setItem("host-event", "hosted")
+        this.setState({host_event:'hosted'}) 
       })
-      localStorage.setItem("event", "hosted")
     }
 
     handleHome = () =>{
+      localStorage.clear()
       localStorage.setItem("event", "")
-      this.props.parentCallback('');
-
+      this.setState({event:''}) 
     }
 
   render(){    
-    
+    if (localStorage.getItem("host-event") === 'hosted') { return (<Loby event={this.state.event} />)}
+    else{
     return (
       <div className='container'>
       <div className='row Hicon'>
@@ -67,6 +66,7 @@ class HostPage extends React.Component{
       </div>
       </div>
       );
+    }
   }
 }
 export default HostPage;
