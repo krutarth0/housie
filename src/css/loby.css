@@ -39,3 +39,7 @@
 .copy{
   cursor: grab;
 }
+
+.alert {
+  color: coral;
+}
