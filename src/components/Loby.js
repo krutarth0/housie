@@ -106,7 +106,7 @@ export default class Loby extends Component {
                         <h5>{data!==null? <p id = 'Room-id'>{data.id}</p>: <Spinner animation="grow" variant="primary"> </Spinner>}</h5>
                         {document.queryCommandSupported('copy') && 
                             <div className='copy' onClick= {()=>this.copy(data.id)}><FileCopyIconOutlined /> </div>}
-                            <p className='alert'>{alert}</p>
+                            <p className='alert'>&nbsp;{alert}</p>
                              </div>
                                  
                     </div>
@@ -150,7 +150,7 @@ export default class Loby extends Component {
                             <h5>{data!==null? <p>{data.id}</p>: <Spinner animation="grow" variant="primary"> </Spinner>}</h5>
                             {document.queryCommandSupported('copy') && 
                             <div className='copy' onClick= {()=>this.copy(data.id)}><FileCopyIconOutlined /> </div>}
-                            <p className='alert'>{alert}</p>
+                            <p className='alert'>&nbsp;{alert}</p>
                              </div>
                             
                     </div>
