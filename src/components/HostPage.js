@@ -27,8 +27,11 @@ class HostPage extends React.Component{
       axios.post(`https://housie-kalpit.herokuapp.com/host/${this.state.player_name}`)
       .then(res =>{
         localStorage.setItem("host-response",JSON.stringify(res.data))
+        localStorage.setItem("ticket",JSON.stringify(res.data.ticket))
         localStorage.setItem("room_ID",JSON.stringify(res.data.id))
+        localStorage.setItem("seed",JSON.stringify(res.data.seed))
         localStorage.setItem("host-event", "hosted")
+        localStorage.setItem("game", "not-started");
         this.setState({host_event:'hosted'}) 
       })
     }

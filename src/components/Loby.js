@@ -8,7 +8,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from '@material-ui/core/Button';
 import FileCopyIconOutlined from '@material-ui/icons/FileCopy';
 
-
+import Game from './Game'
 
 export default class Loby extends Component {
 
@@ -16,7 +16,8 @@ export default class Loby extends Component {
         super(props,context)
         this.state = {
             recurent_data:'',
-            visible:false
+            visible:false,
+            game:'false'
             }
     
     }
@@ -28,20 +29,20 @@ export default class Loby extends Component {
         );
       }
 
-
+      componentWillUnmount() {
+        clearInterval(this.timerID);
+      }
 
    period_fetch = ()=>{
         axios.get(`https://housie-kalpit.herokuapp.com/getGame/${JSON.parse(localStorage.getItem('room_ID'))}`)
         .then(res=> {
             if (res !== undefined || res !== null){
-                console.log('res',res);
                 if (localStorage.getItem('host-response')!==null){
                     localStorage.setItem("host-response",JSON.stringify(res.data))
                 }
                 else{
                     localStorage.setItem("join-response",JSON.stringify(res.data))
                 }
-               
                 this.setState({
                     recurent_data:'data fetched'
                 })
@@ -57,12 +58,6 @@ export default class Loby extends Component {
     textarea.select();
     document.execCommand("copy");
     document.body.removeChild(textarea);
-    // setTimeout(()=> window.alert('copied!'),1000)
-    // window.setTimeout(function() {
-    //     $(".alert").fadeTo(500, 0).slideUp(500, function(){
-    //         $(this).remove(); 
-    //     });
-    // }, 2000);
     this.setState({visible:true},()=>{
         window.setTimeout(()=>{
           this.setState({visible:false})
@@ -78,23 +73,28 @@ export default class Loby extends Component {
     this.setState({event:''}) 
   }
 
+  handleHost = () =>{
+      axios.put(`https://housie-kalpit.herokuapp.com/start/${JSON.parse(localStorage.getItem('room_ID'))}`)
+      this.setState({game:'started'})
+  }
+
 
     render() {
-        console.log(this.state.visible);
-        
-        var data
+        var _data
         if (localStorage.getItem("join-event")==='joined'){
-             data =JSON.parse(localStorage.getItem('join-response'))
-
+             _data =JSON.parse(localStorage.getItem('join-response'))
         }
         else{
-             data =JSON.parse(localStorage.getItem('host-response'))
+             _data =JSON.parse(localStorage.getItem('host-response'))
         }
-    
-        var recurent_data = JSON.parse(localStorage.getItem('recurent-data'))
-
+        console.log(_data);
+        
         var alert = this.state.visible ? 'copied' : null
         if (localStorage.getItem("host-event") === 'hosted') {
+            if(_data.started){//change this to => data.start 
+                return (<Game / >)
+            }
+        else{
             return (
                 <div className='container'>
                     <div className='row Hicon'>
@@ -103,17 +103,17 @@ export default class Loby extends Component {
                     <div className='title'>
                     
                         <div> <h4>Room ID :</h4>
-                        <h5>{data!==null? <p id = 'Room-id'>{data.id}</p>: <Spinner animation="grow" variant="primary"> </Spinner>}</h5>
+                        <h5>{_data!==null? <p id = 'Room-id'>{_data.id}</p>: <Spinner animation="grow" variant="primary"> </Spinner>}</h5>
                         {document.queryCommandSupported('copy') && 
-                            <div className='copy' onClick= {()=>this.copy(data.id)}><FileCopyIconOutlined /> </div>}
+                            <div className='copy' onClick= {()=>this.copy(_data.id)}><FileCopyIconOutlined /> </div>}
                             <p className='alert'>&nbsp;{alert}</p>
                              </div>
                                  
                     </div>
     
                     <div className='joinded-players'>
-                     <p className='player-legend'>Players in the loby : {data.players.length}</p>
-                    {data!==null || data!==undefined? data.players.map( 
+                     <p className='player-legend'>Players in the loby : {_data.players.length}</p>
+                    {_data!==null || _data!==undefined? _data.players.map( 
                         items=>
                                 <Chip
                                 key={items}
@@ -129,62 +129,68 @@ export default class Loby extends Component {
     
                     <div className='host'>
                         <h3>Host:
-                    {data!==null? <p>{data.host}</p> : null}
+                    {_data!==null? <p>{_data.host}</p> : null}
                         </h3>
-                         <Button variant="contained" color="secondary"> Host </Button> 
+                         <Button variant="contained" color="secondary" onClick = {this.handleHost}> Host </Button> 
                     </div>
             
                     
                 </div>
             )
         }
-
+    }
         else{
-            return (
-                <div className='container'>
-                    <div className='row Hicon'>
-                        <a href='/' onClick = {this.handleHome}><i className="fas fa-heading home"></i></a>
-                    </div>
-                    <div className='title'>
-                            <div> <h4>Room ID :</h4>
-                            <h5>{data!==null? <p>{data.id}</p>: <Spinner animation="grow" variant="primary"> </Spinner>}</h5>
-                            {document.queryCommandSupported('copy') && 
-                            <div className='copy' onClick= {()=>this.copy(data.id)}><FileCopyIconOutlined /> </div>}
-                            <p className='alert'>&nbsp;{alert}</p>
-                             </div>
+            if(_data.started){ //change this to => data.start 
+                    return (<Game/>)
+                }
+            else {
+                return (
+                    <div className='container'>
+                        <div className='row Hicon'>
+                            <a href='/' onClick = {this.handleHome}><i className="fas fa-heading home"></i></a>
+                        </div>
+                        <div className='title'>
+                                <div> <h4>Room ID :</h4>
+                                <h5>{_data!==null? <p>{_data.id}</p>: <Spinner animation="grow" variant="primary"> </Spinner>}</h5>
+                                {document.queryCommandSupported('copy') && 
+                                <div className='copy' onClick= {()=>this.copy(_data.id)}><FileCopyIconOutlined /> </div>}
+                                <p className='alert'>&nbsp;{alert}</p>
+                                 </div>
+                                
+                        </div>
+        
+                        <div className='joinded-players'>
                             
-                    </div>
-    
-                    <div className='joinded-players'>
+                                <p className='player-legend'>Players in the loby : {_data.players.length}</p>
+                                {_data!==null || _data!==undefined ? _data.players.map( 
+                                    items=><span className='chips'>
+                                            <Chip 
+                                            
+                                            key={items}
+                                            avatar={<Avatar>{items.charAt(0)}</Avatar>}
+                                            label={items}
+                                            clickable
+                                            variant="outlined"
+                                            />
+                                            </span>
+                                            
+                                    )         
+                                    : <Spinner animation="border" variant="primary"> </Spinner>}
                         
-                            <p className='player-legend'>Players in the loby : {data.players.length}</p>
-                            {data!==null || data!==undefined? data.players.map( 
-                                items=><span className='chips'>
-                                        <Chip 
-                                        
-                                        key={items}
-                                        avatar={<Avatar>{items.charAt(0)}</Avatar>}
-                                        label={items}
-                                        clickable
-                                        variant="outlined"
-                                        />
-                                        </span>
-                                        
-                                )         
-                                : <Spinner animation="border" variant="primary"> </Spinner>}
-                    
-                    </div>
-    
-                    <div className='host'>
-                        <h3>Host:
-                    {data!==null? <p>{data.host}</p> : null}
-                        </h3>
+                        </div>
+        
+                        <div className='host'>
+                            <h3>Host:
+                        {_data!==null? <p>{_data.host}</p> : null}
+                            </h3>
+                            
+                        </div>
+                
                         
                     </div>
+                )
+            }    
             
-                    
-                </div>
-            )
         }
 
     }

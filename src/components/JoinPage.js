@@ -45,8 +45,11 @@ class JoinPage extends React.Component{
         axios.post(`https://housie-kalpit.herokuapp.com/join/${this.state.player_name}/${this.state.room_id}`)
         .then(res => {
           localStorage.setItem("join-response",JSON.stringify(res.data))
+          localStorage.setItem("ticket",JSON.stringify(res.data.ticket))
           localStorage.setItem("room_ID",JSON.stringify(res.data.id))
-        localStorage.setItem("join-event", "joined")
+          localStorage.setItem("seed",JSON.stringify(res.data.seed))
+          localStorage.setItem("join-event", "joined")
+        
         this.setState({join_event:'joined'}) 
         })
         localStorage.setItem("event", "joined");

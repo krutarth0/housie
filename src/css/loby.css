@@ -2,13 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
 .Hicon{
-
     padding-top: 15px;
     padding-left: 9px;
   }
 
 .title{
-  padding-bottom: 30px;
   text-align: center;
   font-family: 'Fredoka One', cursive;
   
@@ -17,7 +15,7 @@
   font-size: 13px;
   color: slategray;
   opacity: 0.5;
-  margin-top: -10px;
+  
   }
 
 .joinded-players {

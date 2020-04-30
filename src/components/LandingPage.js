@@ -21,11 +21,13 @@ class LandingPage extends React.Component{
   handleClickHost (){
     this.setState({event:'host'})
     localStorage.setItem("landing-event", "host");
+    localStorage.setItem("game", "not-started");
   }
 
   handleClickJoin (){
     this.setState({event:'join'})
     localStorage.setItem("landing-event", "join");
+    localStorage.setItem("game", "not-started");
   }
 
 
