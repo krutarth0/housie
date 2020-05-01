@@ -68,6 +68,9 @@ export default class Loby extends Component {
   
 
    handleHome = () =>{
+    window.onbeforeunload = function(){
+        return "Dude Dont go!"
+    }
     localStorage.clear()
     localStorage.setItem("event", "")
     this.setState({event:''}) 
@@ -87,7 +90,7 @@ export default class Loby extends Component {
         else{
              _data =JSON.parse(localStorage.getItem('host-response'))
         }
-        console.log(_data);
+        
         
         var alert = this.state.visible ? 'copied' : null
         if (localStorage.getItem("host-event") === 'hosted') {

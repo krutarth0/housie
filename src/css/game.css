@@ -19,13 +19,7 @@
     overflow: hidden;
   }
 
- td{
-    background-color: coral;
-    text-align: center;
-    min-width: 40px;
-    color: rgb(3, 2, 2);
 
-  }
 .numberGen{
     text-align: center;
     justify-content: center;
@@ -50,4 +44,25 @@
     font-family: 'Lobster Two', cursive;
     text-align: center;
     justify-content: center;
+}
+
+.btn-warning{
+  color:#E0115F;
+  border-color: #2E4C80;
+}
+
+.ticket-td{
+  background-color: coral;
+  text-align: center;
+  min-width: 40px;
+  color: rgb(3, 2, 2);
+
+}
+
+.found-ticket-td{
+  background-color:grey;
+  text-align: center;
+  min-width: 40px;
+  color: rgb(3, 2, 2);
+
 }
