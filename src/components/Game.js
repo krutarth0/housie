@@ -12,8 +12,10 @@ import {Randomnumber,
          shuffle, // <----------------------------------------------------------------------------  
             VisitedCellCall,
             VisitedCells,
+            ticketBool,
             KingsCorner,
-            QueensCorner}  from '../functions'
+            QueensCorner,
+            Breakfast}  from '../functions'
 
 import Results from './Results'
 
@@ -31,7 +33,7 @@ export class Game extends Component {
     componentDidMount() {
         this.timerID = setInterval(
           () => this.generator(),
-          10000
+          5000
         );
       }
 
@@ -65,7 +67,7 @@ export class Game extends Component {
                             }
                             else{
                               if(item == this.state.numberGenerated) {
-                                VisitedCellCall(item)
+                                VisitedCellCall([i,idx],item)
                                 localStorage.setItem(`${i}${idx}`,'found-ticket-td')
                                 return (<td className={`${localStorage.getItem(`${i}${idx}`)}`}>{item}</td>)
                              }
@@ -133,7 +135,7 @@ export class Game extends Component {
                             <Jumbotron >
                             <div className='rules'>
 {/* ===================================================================================================================== */}
-                            <Button className = 'rule-button' variant="secondary"
+                            <Button className = 'rule-button' variant="secondary"  
                                     onClick = {() => {
                                         console.log('KingsCorner clicked');
                                         
@@ -151,7 +153,7 @@ export class Game extends Component {
 {/* ===================================================================================================================== */}
                             <Button className = 'rule-button'variant="primary"
                             onClick = {()=>{
-                                console.log('BreakFast clicked');
+                                console.log('BreakFast clicked',Breakfast(ticket));
                             }}>
                             BreakFast</Button>&nbsp;&nbsp;
 {/* ===================================================================================================================== */}
