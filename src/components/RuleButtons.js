@@ -43,11 +43,11 @@ export default function RuleButtons(props) {
            .then(res => {
                if (res.data === 'won' ){
                 setSnackbarType('success') 
-                setSnackbarMessage(`you succesfully claimed for ${rule}`)
+                setSnackbarMessage(`you succesfully claimed  ${rule}`)
                }
                else{
                 setSnackbarType('info') 
-                setSnackbarMessage(` Better Luck next time, someone already claimed  ${rule}`)
+                setSnackbarMessage(` Better Luck next time, someone has already claimed  ${rule}`)
                }
            })
            .catch(err => console.log(err))
