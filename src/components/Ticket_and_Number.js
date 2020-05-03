@@ -20,7 +20,7 @@ export class TicketAndNumber extends Component {
     componentDidMount() {
         this.timerID = setInterval(
           () => this.generator(),
-          1000
+          5000
         );
       }
       generator = ()=>{
