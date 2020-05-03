@@ -135,7 +135,7 @@ export default class Loby extends Component {
                          <Button variant="contained" color="secondary" onClick = {this.handleHost}> Host </Button> <br/><br/>
 
                          <span>Tip:</span> <br/>
-                         <span>Don't try to be impatient and try to refresh in the game, It will further delay the number for you :)</span> 
+                         <span>Don't try to be impatient and refresh the page in the game, It will further delay the number for you :)</span> 
                     </div>
             
                         
