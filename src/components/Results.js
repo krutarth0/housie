@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import '../css/results.css'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 
+import LeaderBoard from './LeaderBoard'
 export class Results extends Component {
 
     handleHome = () =>{
@@ -17,11 +18,7 @@ export class Results extends Component {
                     <a href='/' onClick = {this.handleHome}><i className="fas fa-heading home"></i></a>
                 </div>
 
-                <div className="mx-auto">
-                    <Jumbotron >
-                        <h2 className="result-leaderboard">Leader Board</h2>    
-                    </Jumbotron>
-                </div>
+                <LeaderBoard/>
             </div>
         )
     }

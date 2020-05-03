@@ -48,6 +48,7 @@ class JoinPage extends React.Component{
           localStorage.setItem("ticket",JSON.stringify(res.data.ticket))
           localStorage.setItem("room_ID",JSON.stringify(res.data.id))
           localStorage.setItem("seed",JSON.stringify(res.data.seed))
+          localStorage.setItem("player_name",this.state.player_name)
           localStorage.setItem("join-event", "joined")
         
         this.setState({join_event:'joined'}) 

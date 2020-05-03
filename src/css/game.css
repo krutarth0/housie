@@ -1,68 +1,6 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Indie+Flower&family=Lobster+Two:ital,wght@1,700&display=swap');
-
-   .ticket{
-    font-size: 1em;
-    border-width: thick;
-    padding-top: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    
-  }
 
   .host-col{
     text-align: right;
   }
   
-  table {
-    border-radius: 1em;
-    overflow: hidden;
-  }
-
-
-.numberGen{
-    text-align: center;
-    justify-content: center;
-    padding-bottom: 10px;;   
-}
-
-
-
-.number{
-    font-size: 30px;
-    font-family: 'Cinzel', serif;
-
-}
-
-.rules{
-    text-align: center;
-    justify-content: center;
-    padding-bottom: 10px;;   
-}
-
-.leaderboard{
-    font-family: 'Lobster Two', cursive;
-    text-align: center;
-    justify-content: center;
-}
-
-.btn-warning{
-  color:#E0115F;
-  border-color: #2E4C80;
-}
-
-.ticket-td{
-  background-color: coral;
-  text-align: center;
-  min-width: 40px;
-  color: rgb(3, 2, 2);
-
-}
-
-.found-ticket-td{
-  background-color:grey;
-  text-align: center;
-  min-width: 40px;
-  color: rgb(3, 2, 2);
-
-}

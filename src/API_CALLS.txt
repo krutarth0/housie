@@ -5,7 +5,6 @@ post --> /host/{hostName} --> String(gameId)
 post --> /join/{playerName}/{gameId}  --> game DB + ticket
 post -> /addWinner/{gameId} --> void   (username and winning rule in request body)
 
-**for debugging***
-
 get --> /ticketCheck  --> int[3][9]
 get --> /getGame/{gameId} --> game(id, seed, players, leaderboard)
+put --> /start/{gameId} --> void

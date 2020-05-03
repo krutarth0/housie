@@ -30,6 +30,7 @@ class HostPage extends React.Component{
         localStorage.setItem("ticket",JSON.stringify(res.data.ticket))
         localStorage.setItem("room_ID",JSON.stringify(res.data.id))
         localStorage.setItem("seed",JSON.stringify(res.data.seed))
+        localStorage.setItem("player_name",this.state.player_name)
         localStorage.setItem("host-event", "hosted")
         localStorage.setItem("game", "not-started");
         this.setState({host_event:'hosted'}) 

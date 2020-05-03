@@ -10,6 +10,7 @@ import FileCopyIconOutlined from '@material-ui/icons/FileCopy';
 
 import Game from './Game'
 
+
 export default class Loby extends Component {
 
     constructor(props,context){
@@ -68,9 +69,6 @@ export default class Loby extends Component {
   
 
    handleHome = () =>{
-    window.onbeforeunload = function(){
-        return "Dude Dont go!"
-    }
     localStorage.clear()
     localStorage.setItem("event", "")
     this.setState({event:''}) 
