@@ -36,9 +36,6 @@ export default function LeaderBoard() {
          data =JSON.parse(localStorage.getItem('host-response'))
     }
 
-    var AlphabateAvatar =  localStorage.getItem('player_name').toLowerCase().charAt(0)
-    var image =`../letters/${AlphabateAvatar}.png`
-    var  avatar 
     return (
       <Container>
         <Jumbotron >
@@ -47,7 +44,7 @@ export default function LeaderBoard() {
               {Object.keys(data.leaderboard).map(rule =>{
               return (
                 <div className="item">
-                <div className='pic' style={{backgroundImage:`url(${require(`../letters/${AlphabateAvatar}.png`)})`}}> </div>
+                <div className='pic' style={{backgroundImage:`url(${require(`../letters/${data.leaderboard[rule].toLowerCase().charAt(0)}.png`)})`}}> </div>
               <div className='name'> {data.leaderboard[rule]}</div>
               <div className='name won'> {rule}</div>
             </div>
