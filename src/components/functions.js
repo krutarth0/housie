@@ -1,12 +1,11 @@
 const shuffleSeed = require('shuffle-seed');
-
-var ticketBool = [ [false ,false,false,false ,false,false ,false ,false,false ],
-					[false ,false,false ,false ,false,false ,false ,false,false],
-				[false ,false,false ,false ,false,false ,false ,false,false ] ]
- localStorage.setItem('ticketBool',JSON.stringify(ticketBool))
 export var VisitedCells =[]
 
 export  function Randomnumber (seed){
+	var TicketBool = [ [false ,false,false,false ,false,false ,false ,false,false ],
+					[false ,false,false ,false ,false,false ,false ,false,false],
+				[false ,false,false ,false ,false,false ,false ,false,false ] ]
+	localStorage.setItem('ticketBool',JSON.stringify(TicketBool))
 	var Ideal_Ticket = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90]
 	var shuffle= shuffleSeed.shuffle(Ideal_Ticket,seed)
 	localStorage.setItem('shuffle',JSON.stringify(shuffle))
@@ -25,6 +24,7 @@ export  function  RemoveElement (randomItem) {
 
 
  export function VisitedCellCall(idx,number){
+	var ticketBool = JSON.parse(localStorage.getItem('ticketBool'))
 	ticketBool[idx[0]][idx[1]] = true 
 	localStorage.setItem('ticketBool',JSON.stringify(ticketBool))
 	VisitedCells.push(number)
@@ -38,7 +38,7 @@ export  function  RemoveElement (randomItem) {
 export function KingsCorner(ticket){
 	localStorage.setItem('KingsCorner','false')
 	var first, second, third;
-	ticketBool = JSON.parse(localStorage.getItem('ticketBool'))
+	var ticketBool = JSON.parse(localStorage.getItem('ticketBool'))
 	first = 0;
 	while(true){
 		if(ticket[0][first] === -1){
@@ -75,7 +75,7 @@ export function KingsCorner(ticket){
 
 export function QueensCorner(ticket){
 	localStorage.setItem('QueensCorner','false')
-	ticketBool = JSON.parse(localStorage.getItem('ticketBool'))
+	var ticketBool = JSON.parse(localStorage.getItem('ticketBool'))
 	var first, second, third;
 	first = 8;	
 	while(true){
@@ -113,7 +113,7 @@ export function QueensCorner(ticket){
 
 export    function Breakfast(ticket){
 	localStorage.setItem('Breakfast','false')
-	ticketBool = JSON.parse(localStorage.getItem('ticketBool'))
+	var ticketBool = JSON.parse(localStorage.getItem('ticketBool'))
 	var condition =   (ticket[0][0] === -1 || ticketBool[0][0]) &&
 			(ticket[0][1] === -1 || ticketBool[0][1]) &&
 			(ticket[0][2] === -1 || ticketBool[0][2]) &&
@@ -131,7 +131,7 @@ export    function Breakfast(ticket){
 
 export function Lunch (ticket){
 	localStorage.setItem('Lunch','false')
-	ticketBool = JSON.parse(localStorage.getItem('ticketBool'))
+	var ticketBool = JSON.parse(localStorage.getItem('ticketBool'))
 	var condition =  (ticket[0][3] === -1 || ticketBool[0][3]) &&
 			(ticket[0][4] === -1 || ticketBool[0][4]) &&
 			(ticket[0][5] === -1 || ticketBool[0][5]) &&
@@ -149,7 +149,7 @@ export function Lunch (ticket){
 
 export function Dinner(ticket){
 	localStorage.setItem('Dinner','false')
-	ticketBool = JSON.parse(localStorage.getItem('ticketBool'))
+	var ticketBool = JSON.parse(localStorage.getItem('ticketBool'))
 	var condition =   (ticket[0][6] === -1 || ticketBool[0][6]) &&
 			(ticket[0][7] === -1 || ticketBool[0][7]) &&
 			(ticket[0][8] === -1 || ticketBool[0][8]) &&
@@ -167,7 +167,7 @@ export function Dinner(ticket){
 
 export function FirstLine(ticket){
 	localStorage.setItem('FirstLine','false')
-	ticketBool = JSON.parse(localStorage.getItem('ticketBool'))
+	var ticketBool = JSON.parse(localStorage.getItem('ticketBool'))
 	var condition =   (ticket[0][0] === -1 || ticketBool[0][0]) &&
 			(ticket[0][1] === -1 || ticketBool[0][1]) &&
 			(ticket[0][2] === -1 || ticketBool[0][2]) &&
@@ -185,7 +185,7 @@ export function FirstLine(ticket){
 
 export function SecondLine(ticket){
 	localStorage.setItem('SecondLine','false')
-	ticketBool = JSON.parse(localStorage.getItem('ticketBool'))
+	var ticketBool = JSON.parse(localStorage.getItem('ticketBool'))
 	var condition =   (ticket[1][0] === -1 || ticketBool[1][0]) &&
 			(ticket[1][1] === -1 || ticketBool[1][1]) &&
 			(ticket[1][2] === -1 || ticketBool[1][2]) &&
@@ -203,7 +203,7 @@ export function SecondLine(ticket){
 
 export function ThirdLine(ticket){
 	localStorage.setItem('ThirdLine','false')
-	ticketBool = JSON.parse(localStorage.getItem('ticketBool'))
+	var ticketBool = JSON.parse(localStorage.getItem('ticketBool'))
 	var condition =   (ticket[2][0] === -1 || ticketBool[2][0]) &&
 			(ticket[2][1] === -1 || ticketBool[2][1]) &&
 			(ticket[2][2] === -1 || ticketBool[2][2]) &&
@@ -221,7 +221,7 @@ export function ThirdLine(ticket){
 
 export function FullHouse(ticket){
 	localStorage.setItem('FullHouse','false')
-	ticketBool = JSON.parse(localStorage.getItem('ticketBool'))
+	var ticketBool = JSON.parse(localStorage.getItem('ticketBool'))
 	var condition =  FirstLine(ticket, ticketBool) && SecondLine(ticket, ticketBool) && ThirdLine(ticket, ticketBool);
 	if (condition){
 		localStorage.setItem('FullHouse','true')
