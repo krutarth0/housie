@@ -132,10 +132,13 @@ export default class Loby extends Component {
                         <h3>Host:
                     {_data!==null? <p>{_data.host}</p> : null}
                         </h3>
-                         <Button variant="contained" color="secondary" onClick = {this.handleHost}> Host </Button> 
+                         <Button variant="contained" color="secondary" onClick = {this.handleHost}> Host </Button> <br/><br/>
+
+                         <span>Tip:</span> <br/>
+                         <span>Don't try to be impatient and refresh in the page in the game, It will further delay the number for you :)</span> 
                     </div>
             
-                    
+                        
                 </div>
             )
         }
