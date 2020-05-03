@@ -187,11 +187,13 @@ export default class Loby extends Component {
                             <h3>Host:
                         {_data!==null? <p>{_data.host}</p> : null}
                             </h3>
-                            
+                            <br/>
+                            <span>Tip:</span> <br/>
+                         <span>Don't try to be impatient and refresh the page, It will further delay the number for you :)</span> 
                         </div>
                 
                         
-                    </div>
+                    </div>  
                 )
             }    
             
