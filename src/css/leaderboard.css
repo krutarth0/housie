@@ -12,18 +12,11 @@
     display: flex;
     -webkit-box-align: center;
     align-items: center;
-    background: white;
     height: 3rem;
     border-radius: 4rem;
     margin-bottom: 2rem;
     background: #EAA786;
-    -webkit-transform-origin: left;
-    transform-origin: left;
     cursor: pointer;
-    -webkit-transition: -webkit-transform 200ms ease-in-out;
-    transition: -webkit-transform 200ms ease-in-out;
-    transition: transform 200ms ease-in-out;
-    transition: transform 200ms ease-in-out, -webkit-transform 200ms ease-in-out;
     box-shadow: 0 0 4rem 0 rgba(0, 0, 0, 0.1), 0 1rem 2rem -1rem rgba(0, 0, 0, 0.3);
 }
 
@@ -61,8 +54,7 @@
 }
 
 .list .item .won {
-    margin-right: -150px;
-    margin-left: -5.5rem;
+    margin-left: 1.5rem;
     opacity: 0.5;
     
 }

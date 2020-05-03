@@ -4,7 +4,8 @@ import Jumbotron from 'react-bootstrap/Jumbotron'
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import '../css/leaderboard.css'
-import { colors } from '@material-ui/core';
+import Container from '@material-ui/core/Container';
+import Paper from '@material-ui/core/Paper';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -37,13 +38,14 @@ export default function LeaderBoard() {
 
     var  avatar 
     return (
+      <Container>
         <Jumbotron >
             <h2 className="leaderboard">Leader Board</h2>
             <div className="list">
               {Object.keys(data.leaderboard).map(rule =>{
               return (
                 <div className="item">
-                <div className='pic' style={{backgroundImage:`url(${require('../a.jpg')})`}}> </div>
+                <div className='pic' style={{backgroundImage:`url(${require('../Letter-F-icon.png')})`}}> </div>
               <div className='name'> {data.leaderboard[rule]}</div>
               <div className='name won'> {rule}</div>
             </div>
@@ -51,5 +53,6 @@ export default function LeaderBoard() {
                 )}
             </div>  
         </Jumbotron>
+        </Container>
     )
 }
