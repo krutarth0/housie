@@ -79,13 +79,13 @@ export default function RuleButtons(props) {
                                     onClick = {() => {
                                         handleClick('KingsCorner',KingsCorner(props.ticket))
                                     }}>
-                            King's Cornor</Button>&nbsp;&nbsp;
+                            King's Corner</Button>&nbsp;&nbsp;
 {/* ===================================================================================================================== */}
                             <Button className = 'rule-button'variant="secondary"
                                 onClick = {() => {
                                     handleClick('QueensCorner',QueensCorner(props.ticket))
                                 }}>
-                            Queen's Cornor</Button>{' '}<br/><br/>
+                            Queen's Corner</Button>{' '}<br/><br/>
 {/* ===================================================================================================================== */}
                             <Button className = 'rule-button'variant="primary"
                             onClick = {()=>{
